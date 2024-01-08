@@ -21,7 +21,7 @@ export default function SignInForm() {
             <div className='d-flex flex-column p-4 text-center'>
                 <h4 className='text-white'>Welcome to the chat app</h4>
                 <Image src="/profile-image.png" roundedCircle className='mx-auto my-3' width={100} fluid />
-                <Button onClick={() => signInWithGoogle()} className='align-items-center'><IconBrandGoogle className='pe-2' />Sign in with Google</Button>
+                <Button onClick={() => signInWithGoogle("", { prompt: "select_account" })} className='align-items-center'><IconBrandGoogle className='pe-2' />Sign in with Google</Button>
 
             </div>
         </div>
