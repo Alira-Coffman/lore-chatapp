@@ -29,8 +29,36 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### Structure of Chats
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```json
+{
+    users: ['useremail@email.com', 'admin-lore@gmail.com'],
+    messages: [
+        {text: "message",
+        timestamp: "time it was sent",
+        sender: "email of sender" 
+        },
+        {text: "message",
+        timestamp: "time it was sent",
+        sender: "email of sender" 
+        },
+        {text: "message",
+        timestamp: "time it was sent",
+        sender: "email of sender" 
+        },
+    ]
+    
+}
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+
+### Structure of Machine Learning Model Options
+
+```json
+
+{
+    options: {text: "message"},
+}
+
+```

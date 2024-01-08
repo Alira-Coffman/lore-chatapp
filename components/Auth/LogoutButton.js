@@ -4,8 +4,8 @@ import { getAuth, signOut } from "firebase/auth";
 import { auth } from '../../firebaseconfig'
 export default function LogoutButton() {
     return (
-        <Button variant="danger" onClick={() => signOut(auth)}>
-            <IconLogout className="pe-1" /> <span>Logout</span>
+        <Button variant="outline-danger" className='p-1 ms-2text-center' onClick={() => signOut(auth)}>
+            <IconLogout className="" />
         </Button>
     )
 }

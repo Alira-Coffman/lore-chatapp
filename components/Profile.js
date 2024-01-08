@@ -1,7 +1,7 @@
 'use client'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebaseconfig';
-import { Spinner } from 'react-bootstrap';
+import { Image, Spinner } from 'react-bootstrap';
 import { redirect } from 'next/navigation';
 import LogoutButton from './Auth/LogoutButton';
 
@@ -27,6 +27,12 @@ export default function Profile() {
     return (<div>
 
         <p>Profile</p>
+        {console.log(user)}
+        <div className='d-flex flex-column'>
+            <Image src={user?.photoURL} roundedCircle width={50} />
+            <p className='p'>{user?.displayName}</p>
+        </div>
+
         <LogoutButton />
     </div>)
 }

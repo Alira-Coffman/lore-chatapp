@@ -6,7 +6,6 @@ const ChatList = () => {
 
     return (
         <div>
-            <p className='fs-3 text-center'>Chat List</p>
 
             {chats.map((chat, index) => (
                 <ChatName key={index} userName={chat} recentMessage='Hello' />
