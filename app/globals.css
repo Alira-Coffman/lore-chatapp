@@ -11,3 +11,12 @@
   max-height: 15rem;
   min-height: 2rem;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: .8;
+}

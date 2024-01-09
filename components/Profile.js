@@ -27,7 +27,6 @@ export default function Profile() {
     return (<div>
 
         <p>Profile</p>
-        {console.log(user)}
         <div className='d-flex flex-column'>
             <Image src={user?.photoURL} roundedCircle width={50} />
             <p className='p'>{user?.displayName}</p>
