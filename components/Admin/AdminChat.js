@@ -7,27 +7,10 @@ import Receiver from "../Chat/Reciever";
 export default function AdminChat() {
     return (
         <>
-            <Card className='border-0 ' style={{ maxHeight: '94vh' }} >
+            <Card className='border-0 ' style={{ maxHeight: '94vh', minHeight: '94vh' }} >
                 <Card.Title className='p-3'>Card Title</Card.Title>
                 <Card.Body className='overflow-auto '>
 
-
-                    <Sender />
-                    <Receiver />
-                    <Sender />
-                    <Receiver />
-                    <Sender />
-                    <Receiver />
-                    <Sender />
-                    <Sender />
-                    <Sender />
-                    <Receiver />
-                    <Sender />
-                    <Receiver />
-                    <Sender />
-                    <Receiver />
-                    <Sender />
-                    <Sender />
                 </Card.Body>
                 <FloatingLabel
                     controlId="floatingTextarea"

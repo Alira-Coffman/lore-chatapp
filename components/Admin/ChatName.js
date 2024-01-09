@@ -9,7 +9,7 @@ const ChatName = ({ userName, recentMessage }) => {
 
             </div>
             <div className='d-flex flex-wrap'>
-                <span>{userName}</span>
+                <span className='text-wrap text-break'>{userName}</span>
                 <span className='text-muted px-2 text-truncate'>{recentMessage}</span>
             </div>
 

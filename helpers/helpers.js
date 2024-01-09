@@ -48,4 +48,8 @@ export const hasNotch = () => {
   );
 };
 
+//used for list of chats
+export const getOtherEmail = (users, currentUser) => {
+  return users?.filter((user) => user !== currentUser)[0];
+}
 

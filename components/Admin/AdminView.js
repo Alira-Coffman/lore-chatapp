@@ -18,6 +18,9 @@ export default function AdminView() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    if (user === undefined || user?.email === undefined) { return <p>Loading</p> }
+    console.log('user', user)
     return (
         <>
             <div className="d-flex align-items-center">
@@ -29,7 +32,7 @@ export default function AdminView() {
             </div>
 
             {!mobileDesign && <Row>
-                <Col lg={2} md={2} className='border p-0'>
+                <Col lg={3} md={3} className='border p-0'>
                     <div className="border-bottom d-flex justify-content-between align-items-center p-2">
                         <div className="d-flex justify-content-start align-items-center">
                             <Image src={user?.photoURL} roundedCircle width={50} />
@@ -39,7 +42,8 @@ export default function AdminView() {
                         <LogoutButton />
                     </div>
                     <div className="p-2">
-                        <ChatList />
+                        <ChatList currentUser={user.email} />
+
                     </div>
 
                 </Col>
@@ -54,7 +58,7 @@ export default function AdminView() {
                         <Offcanvas.Title>Conversations</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <ChatList />
+                        <ChatList currentUser={user.email} />
                     </Offcanvas.Body>
                 </Offcanvas>
             </div>

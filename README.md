@@ -34,18 +34,21 @@ Note that: for the option that the admin chooses, it will log which admin chose 
 ```json
 {
     "users": ["useremail@email.com", "admin-lore@gmail.com"],
-   " messages": [
+    "messages": [
         {"text": "message",
         "timestamp": "time it was sent",
-        "sender": "email of sender" 
+        "sender": "email of sender" ,
+        "seenByReciever" : true,
         },
         {"text": "message",
         "timestamp": "time it was sent",
-        "sender": "email of sender" 
+        "sender": "email of sender", 
+         "seenByReciever" : true,
         },
         {"text": "message",
         "timestamp": "time it was sent",
-        "sender": "email of sender" 
+        "sender": "email of sender" ,
+         "seenByReciever" : true,
         },
     ]
 }

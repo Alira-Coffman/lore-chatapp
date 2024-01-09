@@ -11,7 +11,7 @@ import { Container, Row, Col, FloatingLabel, Button, Form, Card } from 'react-bo
 export default function MessagePage() {
     return (
         <Container fluid className=''>
-            <AdminView />
+
         </Container>
     );
 }
