@@ -47,7 +47,7 @@ export default function AdminLayout({ children }) {
                         <LogoutButton />
                     </div>
                     <div className="p-2">
-                        <ChatList close={handleClose} />
+                        <ChatList currentUser={user?.email} close={handleClose} />
 
                     </div>
 
@@ -57,13 +57,13 @@ export default function AdminLayout({ children }) {
                 </Col>
             </Row>}
             {mobileDesign && <div>
-                <AdminChat />
+                {children}
                 <Offcanvas show={show} onHide={handleClose} responsive="lg" className='vw-100'>
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title>Conversations</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <ChatList currentUser={user.email} />
+                        {user && <ChatList currentUser={user?.email} />}
                     </Offcanvas.Body>
                 </Offcanvas>
             </div>

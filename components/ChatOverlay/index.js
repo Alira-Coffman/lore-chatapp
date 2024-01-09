@@ -46,8 +46,8 @@ export default function ChatOverlay() {
 
             {/**CHAT BOX */}
             {show && <div className={`${!show && 'd-none'}`}>
-                <div style={{ width: '25rem', minHeight: '30rem', maxHeight: '40rem' }} >
-                    <ChatBox chatId={chats} show={show} setShow={setShow} />
+                <div className='border rounded ' style={{ width: '25rem', minHeight: '29rem', maxHeight: '40rem' }} >
+                    <ChatBox chatId={chats} show={show} setShow={setShow} scrollableOptions={{ maxHeight: 'calc(80vh - 600px)' }} />
                 </div>
             </div>}
             <Button className='rounded-circle float-end mt-4' variant='outline-dark' onClick={() => handleChat()}>

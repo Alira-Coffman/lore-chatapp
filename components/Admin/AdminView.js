@@ -40,7 +40,7 @@ export default function AdminView() {
                         <LogoutButton />
                     </div>
                     <div className="p-2">
-                        <ChatList currentUser={user.email} />
+                        {user && <ChatList currentUser={user?.email} />}
 
                     </div>
 
@@ -56,7 +56,7 @@ export default function AdminView() {
                         <Offcanvas.Title>Conversations</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <ChatList currentUser={user.email} />
+                        {user && <ChatList currentUser={user?.email} />}
                     </Offcanvas.Body>
                 </Offcanvas>
             </div>
