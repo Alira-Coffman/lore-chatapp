@@ -1,3 +1,6 @@
+import { db } from "@/firebaseconfig";
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+
 export function test() {
   return null;
 }
@@ -51,5 +54,36 @@ export const hasNotch = () => {
 //used for list of chats
 export const getOtherEmail = (users, currentUser) => {
   return users?.filter((user) => user !== currentUser)[0];
+}
+
+
+export const createNewChat = async (currentUser, otherUser) => {
+  console.log('creating chat', currentUser, otherUser)
+  //protection for creating a chat with yourself
+  if (currentUser === otherUser) return null;
+  const chatId = await chatExists(currentUser, otherUser);
+  console.log('chatId', chatId)
+  if (chatId) {
+    await updateDoc(doc(db, 'chats', chatId), { users: [currentUser, otherUser] });
+    return chatId;
+  } else {
+    const docRef = await addDoc(collection(db, 'chats'), { users: [currentUser, otherUser] });
+    console.log('docRef', docRef.id)
+    return docRef.id;
+  }
+}
+
+export const chatExists = async (currentUser, otherUser) => {
+  console.log(currentUser, otherUser)
+  const querySnapshot = await getDocs(query(
+    collection(db, 'chats'),
+    where('users', 'array-contains-any', [currentUser, otherUser]),
+
+  ));
+  let chatId = null;
+  querySnapshot.forEach((doc) => {
+    chatId = doc.id;
+  });
+  return chatId;
 }
 

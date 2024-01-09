@@ -5,24 +5,20 @@ import { Button, Image } from 'react-bootstrap';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebaseconfig'
 import { redirect } from 'next/navigation';
+import SignInWithGoogle from './SignInWithGoogle';
+import SignInWithEmail from './SignInWithEmail';
 export default function SignInForm() {
 
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-    const handleSignIn = () => {
-        // Handle sign-in with Google logic here
-    };
-    if (user) {
-        redirect('/')
-    }
     return (
         <div className='bg-info position-absolute rounded top-50 start-50 translate-middle w-25'>
             {/* Other form fields */}
             <div className='d-flex flex-column p-4 text-center'>
                 <h4 className='text-white'>Welcome to the chat app</h4>
                 <Image src="/profile-image.png" roundedCircle className='mx-auto my-3' width={100} fluid />
-                <Button onClick={() => signInWithGoogle("", { prompt: "select_account" })} className='align-items-center'><IconBrandGoogle className='pe-2' />Sign in with Google</Button>
+                <SignInWithEmail />
 
+                <SignInWithGoogle />
             </div>
         </div>
     );

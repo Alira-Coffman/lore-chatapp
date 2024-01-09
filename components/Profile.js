@@ -16,20 +16,15 @@ export default function Profile() {
 
     if (!user) {
         redirect('auth/signin')
-        return (
-            <div>
-                <p>Please login to a user account or an admin account. For access to admin, please contact.</p>
 
-            </div>
-
-        )
     }
+    console.log(user)
     return (<div>
 
         <p>Profile</p>
         <div className='d-flex flex-column'>
             <Image src={user?.photoURL} roundedCircle width={50} />
-            <p className='p'>{user?.displayName}</p>
+            <p className='p'>{user?.displayName || user?.email}</p>
         </div>
 
         <LogoutButton />

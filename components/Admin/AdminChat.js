@@ -24,7 +24,7 @@ export default function AdminChat({ receiver }) {
     if (error) {
         console.error("Error fetching chats: ", error);
     }
-    if (loading) {
+    if (loading || !user) {
         return <p>Loading</p>
     }
 
@@ -33,8 +33,8 @@ export default function AdminChat({ receiver }) {
 
     return (
         <>
-            <Card className='border-0 ' style={{ maxHeight: '94vh', minHeight: '94vh' }} >
-                <Card.Title className='p-3'>Chatting with {getOtherEmail(singleChat.users, user?.email)}</Card.Title>
+            <Card className='border-0 ' style={{ maxHeight: '90vh', minHeight: '90vh' }} >
+                <Card.Title className='p-3'>Chatting with {getOtherEmail(singleChat?.users, user?.email)}</Card.Title>
                 <Card.Body className='overflow-auto '>
 
                 </Card.Body>
