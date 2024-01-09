@@ -55,7 +55,29 @@ export const hasNotch = () => {
 export const getOtherEmail = (users, currentUser) => {
   return users?.filter((user) => user !== currentUser)[0];
 }
+export const chatExists = async (currentUser, otherUser) => {
+  console.log('getting chats')
+  const querySnapshot = await getDocs(collection(db, 'chats'));
+  let chatId = null;
+  console.log('querySnapshot', querySnapshot)
+  querySnapshot.forEach((doc) => {
+    const users = doc.data().users;
+    if (users.includes(currentUser) && users.includes(otherUser)) {
+      chatId = doc.id;
+    }
+  });
+  return chatId;
 
+  // const querySnapshot = await getDocs(collection(db, 'chats'));
+  // let chatId = null;
+  // querySnapshot.forEach((doc) => {
+  //   const users = doc.data().users;
+  //   if (users.includes(currentUser) && users.includes(otherUser)) {
+  //     chatId = doc.id;
+  //   }
+  // });
+  // return chatId;
+}
 
 export const createNewChat = async (currentUser, otherUser) => {
   console.log('creating chat', currentUser, otherUser)
@@ -73,17 +95,5 @@ export const createNewChat = async (currentUser, otherUser) => {
   }
 }
 
-export const chatExists = async (currentUser, otherUser) => {
-  console.log(currentUser, otherUser)
-  const querySnapshot = await getDocs(query(
-    collection(db, 'chats'),
-    where('users', 'array-contains-any', [currentUser, otherUser]),
 
-  ));
-  let chatId = null;
-  querySnapshot.forEach((doc) => {
-    chatId = doc.id;
-  });
-  return chatId;
-}
 
