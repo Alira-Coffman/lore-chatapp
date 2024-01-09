@@ -29,7 +29,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-### Structure of Chats
+### Structure of Chats, this is an array
 Note that: for the option that the admin chooses, it will log which admin chose it. They will be marked as the sender. 
 ```json
 {
@@ -48,7 +48,6 @@ Note that: for the option that the admin chooses, it will log which admin chose 
         "sender": "email of sender" 
         },
     ]
-    
 }
 
 ```
@@ -58,7 +57,7 @@ Note that: for the option that the admin chooses, it will log which admin chose 
 ```json
 
 {
-    "options": {"text": "message"},
+    "options": [{"text": "message"},{"text": "message"},{"text": "message"}],
 }
 
 ```
