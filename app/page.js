@@ -1,6 +1,5 @@
-import Profile from '@/components/Profile'
-import styles from './page.module.css'
-import { Container } from 'react-bootstrap'
+import Profile from "@/components/Profile";
+import { Container } from "react-bootstrap";
 
 export default function Home() {
   return (
@@ -9,8 +8,6 @@ export default function Home() {
         <h1>Chat</h1>
         <Profile />
       </Container>
-
-
     </main>
-  )
+  );
 }

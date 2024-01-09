@@ -1,9 +1,9 @@
 .bg-cyan {
-  background-color: #A5EEFD;
+  background-color: #a5eefd;
 }
 
 .bg-green {
-  background-color: #A2E9C1;
+  background-color: #a2e9c1;
 }
 
 /**USED TO LIMIT USER INPUT HEIGHT */
@@ -18,5 +18,5 @@ a {
 }
 
 a:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
