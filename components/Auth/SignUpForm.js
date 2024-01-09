@@ -16,14 +16,12 @@ export default function SignUpForm() {
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
-      console.log("Profile Update");
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     if (user) {
-      console.log(user);
       //update the user profile
       updateProfileitems();
     }

@@ -18,16 +18,13 @@ export default function ChatOverlay() {
   const handleChat = () => {
     //make sure its the most up to date when user is opening it
     if (!show) {
-      console.log("creating chat");
       createNewChat(user?.email, "admin@gmail.com")
         .then((chatId) => {
-          console.log("Chat ID:", chatId);
           setChats(chatId);
           setShow(true);
         })
         .catch((error) => console.error(error));
     } else {
-      console.log("dont show");
       setShow(!show);
     }
   };

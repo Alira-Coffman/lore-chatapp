@@ -6,7 +6,6 @@ import { Image } from "react-bootstrap";
 const ChatName = ({ userName, id }) => {
   //need to dynamically set background color for active chat so the user knows.
   const params = useParams();
-  console.log(params);
 
   return (
     <Link href={`/admin/${id}`}>

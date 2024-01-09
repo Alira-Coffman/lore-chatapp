@@ -1,5 +1,5 @@
 import useDeviceScreen from "@/hooks/useDeviceScreen";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -22,6 +22,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 // import { TextArea } from './TextArea';
 import { useRef } from "react";
 import { TextArea } from "./TextArea";
+import InputSelection from "../Admin/InputSelection";
 export default function ChatBox({
   chatId,
   show,
@@ -30,6 +31,7 @@ export default function ChatBox({
   scrollableOptions = null,
 }) {
   const [user] = useAuthState(auth);
+  const [prompt, setPrompt] = useState(false);
   /**ON MOBILE WE NEED A FULL SCREEN OFF CANVAS */
   const deviceScreen = useDeviceScreen();
   const mobileDesign = deviceScreen?.width <= 520;
@@ -49,8 +51,16 @@ export default function ChatBox({
 
   useEffect(() => {
     scrollToBottom();
+    //check if last message was from user. mind you, normally this will be done using the user properties of if they have admin permissions
+    if (
+      messages?.length > 0 &&
+      messages[messages?.length - 1]?.sender != user?.email &&
+      user?.email == "admin@gmail.com"
+    ) {
+      console.log("promp options");
+      setPrompt(true);
+    }
   }, [messages]);
-  console.log(messages);
   if (!mobileDesign)
     return (
       <Card style={styles} className="border-0 overflow-auto">
@@ -60,7 +70,6 @@ export default function ChatBox({
           style={scrollableOptions}
         >
           {messages?.map((message, idx) => {
-            console.log(message);
             if (message?.sender === user?.email)
               return <Receiver key={idx} message={message?.text} />;
             else return <Sender key={idx} message={message?.text} />;
@@ -69,11 +78,8 @@ export default function ChatBox({
             {/**THIS IS AN INVISIBLE DIV USED TO SCROLL TO THE BOTTOM */}
           </div>
         </Card.Body>
-        <Card.Footer
-          className="bg-white position-sticky
-                "
-        >
-          <TextArea chatId={chatId} />
+        <Card.Footer className="bg-white position-sticky">
+          <TextArea chatId={chatId} prompt={prompt} setPrompt={setPrompt} />
         </Card.Footer>
       </Card>
     );
@@ -90,7 +96,6 @@ export default function ChatBox({
         </Offcanvas.Header>
         <Offcanvas.Body>
           {messages?.map((message, idx) => {
-            console.log(message);
             if (message?.sender === user?.email)
               return <Receiver key={idx} message={message?.text} />;
             else return <Sender key={idx} message={message?.text} />;

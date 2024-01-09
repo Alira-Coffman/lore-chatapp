@@ -64,10 +64,8 @@ export const getOtherEmail = (users, currentUser) => {
   return users?.filter((user) => user !== currentUser)[0];
 };
 export const chatExists = async (currentUser, otherUser) => {
-  console.log("getting chats");
   const querySnapshot = await getDocs(collection(db, "chats"));
   let chatId = null;
-  console.log("querySnapshot", querySnapshot);
   querySnapshot.forEach((doc) => {
     const users = doc.data().users;
     if (users.includes(currentUser) && users.includes(otherUser)) {
@@ -88,11 +86,9 @@ export const chatExists = async (currentUser, otherUser) => {
 };
 
 export const createNewChat = async (currentUser, otherUser) => {
-  console.log("creating chat", currentUser, otherUser);
   //protection for creating a chat with yourself
   if (currentUser === otherUser) return null;
   const chatId = await chatExists(currentUser, otherUser);
-  console.log("chatId", chatId);
   if (chatId) {
     await updateDoc(doc(db, "chats", chatId), {
       users: [currentUser, otherUser],
@@ -102,7 +98,6 @@ export const createNewChat = async (currentUser, otherUser) => {
     const docRef = await addDoc(collection(db, "chats"), {
       users: [currentUser, otherUser],
     });
-    console.log("docRef", docRef.id);
     return docRef.id;
   }
 };

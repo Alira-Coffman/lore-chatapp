@@ -19,7 +19,6 @@ export default function Profile() {
   if (!user) {
     redirect("auth/signin");
   }
-  console.log(user);
   return (
     <div>
       <p>Profile</p>
