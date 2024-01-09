@@ -2,47 +2,59 @@ import { IconEdit, IconSend } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import { Dropdown, Spinner } from "react-bootstrap";
 
-const useOptions = (message) => {
+const InputSelection = ({ message, setInputChat, setInputSetBySelection }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
   const [options, setOptions] = useState(null);
 
-  useEffect(() => {
-    const fetchOptions = async () => {
-      try {
-        const response = await fetch("/api/openai", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message, maxTokens: 100 }),
-        });
+  const getOptions = () => {
+    const maxTokens = 100; // Optional
 
-        const data = await response.json();
+    fetch("/api/openapi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message, maxTokens }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // The data object will contain the response from the OpenAI API
+        console.log(data);
         setOptions(data?.choices);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error:", error);
-      }
-    };
+      });
+  };
 
-    fetchOptions();
-  }, [message]);
+  const sendMessageToModel = () => {
+    //send message to the model
+  };
 
-  return options;
-};
+  const tempOptions = [
+    { id: 1, name: "Option 1" },
+    { id: 2, name: "Option 2" },
+    { id: 3, name: "Option 3" },
+  ];
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
 
-const InputSelection = ({ message, setInputChat, setInputSetBySelection }) => {
-  const options = useOptions(message);
+  useEffect(() => {
+    getOptions();
+  }, []);
 
   return (
-    <div>
+    <div className="mx-2">
+      {console.log(options)}
+      <p>Select an option:</p>
       {options ? (
         options.map((option, index) => (
-          <div
-            className="d-flex border rounded p-2 justify-content-between text-wrap text-break "
-            key={index}
-          >
+          <div className="d-flex border rounded p-2 justify-content-between text-wrap text-break ">
             <p>{option.name}</p>
             <div>
               <IconEdit onClick={() => setInputChat(option?.name)} />
+
               <IconSend
                 className="text-primary ms-3"
                 onClick={() => {
@@ -55,6 +67,13 @@ const InputSelection = ({ message, setInputChat, setInputSetBySelection }) => {
         ))
       ) : (
         <Spinner animation="border" />
+      )}
+      {selectedOption && (
+        <div>
+          <p>Selected option: {selectedOption}</p>
+          <button onClick={handleSend}>Send</button>
+          <button onClick={handleEdit}>Edit</button>
+        </div>
       )}
     </div>
   );
