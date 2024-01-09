@@ -61,51 +61,51 @@ export default function ChatBox({
       setPrompt(true);
     }
   }, [messages]);
-  if (!mobileDesign)
-    return (
-      <Card style={styles} className="border-0 overflow-auto">
-        <Card.Title className="p-3">Card Title</Card.Title>
-        <Card.Body
-          className="d-flex flex-column overflow-auto"
-          style={scrollableOptions}
-        >
-          {messages?.map((message, idx) => {
-            if (message?.sender === user?.email)
-              return <Receiver key={idx} message={message?.text} />;
-            else return <Sender key={idx} message={message?.text} />;
-          })}
-          <div ref={bottomOfChat}>
-            {/**THIS IS AN INVISIBLE DIV USED TO SCROLL TO THE BOTTOM */}
-          </div>
-        </Card.Body>
-        <Card.Footer className="bg-white position-sticky">
-          <TextArea chatId={chatId} prompt={prompt} setPrompt={setPrompt} />
-        </Card.Footer>
-      </Card>
-    );
-  else
-    return (
-      <Offcanvas
-        show={show}
-        onHide={() => setShow(!show)}
-        responsive="lg"
-        className="vw-100"
+  //   if (!mobileDesign)
+  return (
+    <Card style={styles} className="border-0 overflow-auto">
+      <Card.Title className="p-3">Card Title</Card.Title>
+      <Card.Body
+        className="d-flex flex-column overflow-auto"
+        style={scrollableOptions}
       >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Chatting with INSERT NAME</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          {messages?.map((message, idx) => {
-            if (message?.sender === user?.email)
-              return <Receiver key={idx} message={message?.text} />;
-            else return <Sender key={idx} message={message?.text} />;
-          })}
-          <div ref={bottomOfChat}>
-            {/**THIS IS AN INVISIBLE DIV USED TO SCROLL TO THE BOTTOM */}
-          </div>
-        </Offcanvas.Body>
+        {messages?.map((message, idx) => {
+          if (message?.sender === user?.email)
+            return <Receiver key={idx} message={message?.text} />;
+          else return <Sender key={idx} message={message?.text} />;
+        })}
+        <div ref={bottomOfChat}>
+          {/**THIS IS AN INVISIBLE DIV USED TO SCROLL TO THE BOTTOM */}
+        </div>
+      </Card.Body>
+      <Card.Footer className="bg-white position-sticky">
+        <TextArea chatId={chatId} prompt={prompt} setPrompt={setPrompt} />
+      </Card.Footer>
+    </Card>
+  );
+  //   else
+  //     return (
+  //       <Offcanvas
+  //         show={show}
+  //         onHide={() => setShow(!show)}
+  //         responsive="lg"
+  //         className="vw-100"
+  //       >
+  //         <Offcanvas.Header closeButton>
+  //           <Offcanvas.Title>Chatting with INSERT NAME</Offcanvas.Title>
+  //         </Offcanvas.Header>
+  //         <Offcanvas.Body>
+  //           {messages?.map((message, idx) => {
+  //             if (message?.sender === user?.email)
+  //               return <Receiver key={idx} message={message?.text} />;
+  //             else return <Sender key={idx} message={message?.text} />;
+  //           })}
+  //           <div ref={bottomOfChat}>
+  //             {/**THIS IS AN INVISIBLE DIV USED TO SCROLL TO THE BOTTOM */}
+  //           </div>
+  //         </Offcanvas.Body>
 
-        <TextArea chatId={chatId} />
-      </Offcanvas>
-    );
+  //         <TextArea chatId={chatId} />
+  //       </Offcanvas>
+  //     );
 }

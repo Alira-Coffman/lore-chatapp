@@ -31,7 +31,10 @@ export function TextArea({ chatId, prompt, setPrompt, userMessage }) {
       sendMessage(e);
     }
   };
-  const sendMessage = async () => {
+  const sendMessage = async (e) => {
+    if (e) {
+      event.preventDefault();
+    }
     //need to prevent user from spamming empty messages
     // Remove leading and trailing whitespace
     const trimmedInput = input.trim();

@@ -1,29 +1,48 @@
 import { IconEdit, IconSend } from "@tabler/icons-react";
-import React, { useState } from "react";
-import { Dropdown } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Dropdown, Spinner } from "react-bootstrap";
+
+const useOptions = (message) => {
+  const [options, setOptions] = useState(null);
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const response = await fetch("/api/openai", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message, maxTokens: 100 }),
+        });
+
+        const data = await response.json();
+        setOptions(data?.choices);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchOptions();
+  }, [message]);
+
+  return options;
+};
 
 const InputSelection = ({ message, setInputChat, setInputSetBySelection }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const tempOptions = [
-    { id: 1, name: "Option 1" },
-    { id: 2, name: "Option 2" },
-    { id: 3, name: "Option 3" },
-  ];
-  const handleOptionSelect = (option) => {
-    setSelectedOption(option);
-  };
+  const options = useOptions(message);
 
   return (
-    <div className="mx-2">
-      <p>Select an option:</p>
-      {tempOptions.map((option) => {
-        return (
-          <div className="d-flex border rounded p-2 justify-content-between text-wrap text-break ">
+    <div>
+      {options ? (
+        options.map((option, index) => (
+          <div
+            className="d-flex border rounded p-2 justify-content-between text-wrap text-break "
+            key={index}
+          >
             <p>{option.name}</p>
             <div>
               <IconEdit onClick={() => setInputChat(option?.name)} />
-
               <IconSend
                 className="text-primary ms-3"
                 onClick={() => {
@@ -33,14 +52,9 @@ const InputSelection = ({ message, setInputChat, setInputSetBySelection }) => {
               />
             </div>
           </div>
-        );
-      })}
-      {selectedOption && (
-        <div>
-          <p>Selected option: {selectedOption}</p>
-          <button onClick={handleSend}>Send</button>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
+        ))
+      ) : (
+        <Spinner animation="border" />
       )}
     </div>
   );

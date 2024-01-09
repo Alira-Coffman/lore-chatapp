@@ -2,9 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-const ChatBox = dynamic(() => import("../Chat/ChatBox"), {
-  ssr: false,
-});
+import ChatBox from "../Chat/ChatBox";
 import { createNewChat } from "@/helpers/helpers";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebaseconfig";
