@@ -16,10 +16,10 @@ Consideration for future addition of more models and scalability.
 
 ## Assumptions
 
-Assumption 1: The question is asking me to build the software services, not the model itself.
-Assumption 2: the machine learning model will be able to interface with NextAPI routes. Basically, the prompt from the user will be sent through the api route to wherever the model is, and a response of three options will be returned. This is shown in '/api/example' in the get request. In this example, I am pulling a random three options from a temporary json quote file. 
-Assumption 3: Firebase will be a cost-effective option that will allow the model and the surrounding systems to live in the same cloud service. (gcp is a good option for models)
-Assumption 4: A user will only need one chat, but might need more later. An admin will ALWAYS have more than one chat.
+1. Assumption 1: The question is asking me to build the software services, not the model itself.
+2. Assumption 2: the machine learning model will be able to interface with NextAPI routes. Basically, the prompt from the user will be sent through the api route to wherever the model is, and a response of three options will be returned. This is shown in '/api/example' in the get request. In this example, I am pulling a random three options from a temporary json quote file. 
+3. Assumption 3: Firebase will be a cost-effective option that will allow the model and the surrounding systems to live in the same cloud service. (gcp is a good option for models)
+4. Assumption 4: A user will only need one chat, but might need more later. An admin will ALWAYS have more than one chat.
 ... 
 
 ## Scalability, Security, and Thoughts
