@@ -10,7 +10,7 @@ This is a chat application built for a take home assignment. The purpose of it i
 
 ## Key Requirements
 
-Concurrent development of associated software services. (Fronten, backend, etc)
+Concurrent development of associated software services. (Frontend, backend, etc)
 Capability to surface multiple proposed responses for manual review.
 Consideration for future addition of more models and scalability.
 
@@ -26,7 +26,7 @@ Consideration for future addition of more models and scalability.
 1. The chat system was built in a way where it does not care who is chatting with who, or how many chats a user/admin has. It is currently set up that a user can only chat with an admin. But, this is easily changed with the helper function. Instead of passing 'admin@gmail.com', we can pass a specific model to chat with.
 2. An admin currently cannot START a chat, but if that functionality was ever desired, it is possible for them to do so using the helper function.
 3. Firebase is a pay-as-you-go option, allowing us to start small and grow as need be. (it also has a free tier which made it a good option for this take home assignment)
-4. Firebase Authentication system - it can scale with user growth and wont require a large overhall
+4. Firebase Authentication system - it can scale with user growth and wont require a large overhaul
 5. Firestore allows for realtime synchronization, which makes it ideal for chat applications like this. As soon as the new messages are added, they are instantly pushed.
 6. Firestore is a NoSQL database and can scale with ease. As demand increase, we aren't worried.
 7. Serverless architecture will reduce overall maintenence. We dont need to worry about infistructure.
@@ -65,7 +65,7 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
                              [Firestore]
                                  |
                                  v
-                           [Next.js API Routes] <---> Cloud Storage/Cloud FUnctions  <---> [Machine Learning Model]
+                           [Next.js API Routes] <---> Cloud Storage/Cloud Functions  <---> [Machine Learning Model]
 
 ## Authentication 
 The user can log in through google, or email and password. (currently email and password is intended for admins only. But restrictions would need to be added --refer to todolist) 
@@ -81,9 +81,9 @@ Note: A lot of the firestore is called on client side through react-firebase-hoo
 * real time updates - new messages in chat would be a great contender for using client side
 *  client side rendering - this can be a benefit
 
-### Benefits of using trhough API routes
-* server side render - this can assist in SEO and initial load performance.
-* Security - since these are private chats, it would be considered more secure to host a lot of it on serverside.
+### Benefits of using server
+* server-side render - this can assist in SEO and initial load performance.
+* Security - since these are private chats, it would be considered more secure to host a lot of it on server-side.
 
 ### Hybrid
 * Since realtime updates are something that is beneficial for this project, a hybrid appproach might be worth it.
