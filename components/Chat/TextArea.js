@@ -11,17 +11,22 @@ export function TextArea({ chatId, prompt, setPrompt, userMessage }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
   const [inputSetBySelection, setInputSetBySelection] = useState(false);
+  const [sendToModel, setSendToModel] = useState(false);
+  const sendMessageToModel = async (adminMessage) => {
+    //send message to the model
+    //api call to the model to send the message
 
-  const handleSendToModel = () => {
-    // Logic to send the selected option
-    console.log("Sending option:", input);
+    const response = await fetch("/api/example", {
+      method: "POST",
+      body: JSON.stringify({ prompt: adminMessage, maxTokens: 100 }),
+    });
   };
+
   useEffect(() => {
     if (input && inputSetBySelection) {
       sendMessage();
       setInputSetBySelection(false); // Reset the flag after sending the message
       setPrompt(false);
-      handleSendToModel();
     }
   }, [input, inputSetBySelection]);
   //used to allow for enter
@@ -53,6 +58,11 @@ export function TextArea({ chatId, prompt, setPrompt, userMessage }) {
         timestamp: serverTimestamp(),
       });
       setInput("");
+      if (sendToModel) {
+        sendMessageToModel(input);
+        setSendToModel(false);
+      }
+      setPrompt(false);
     } else {
       if (trimmedInput > 500)
         setError("Message must be between 1 and 500 characters long");
@@ -65,6 +75,7 @@ export function TextArea({ chatId, prompt, setPrompt, userMessage }) {
         <InputSelection
           setInputChat={setInput}
           setInputSetBySelection={setInputSetBySelection}
+          sendToServer={sendMessageToModel}
         />
       )}
       <form onSubmit={sendMessage}>
