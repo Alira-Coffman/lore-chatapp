@@ -29,39 +29,90 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-### Structure of Chats, this is an array
-Note that: for the option that the admin chooses, it will log which admin chose it. They will be marked as the sender. 
-```json
-{
-    "id": "id here",
-    "users": ["useremail@email.com", "admin-lore@gmail.com"],
-    "messages": [
-        {"text": "message",
-        "timestamp": "time it was sent",
-        "sender": "email of sender" ,
-        "seenByReciever" : true,
-        },
-        {"text": "message",
-        "timestamp": "time it was sent",
-        "sender": "email of sender", 
-         "seenByReciever" : true,
-        },
-        {"text": "message",
-        "timestamp": "time it was sent",
-        "sender": "email of sender" ,
-         "seenByReciever" : true,
-        },
-    ]
-}
+## How to USE
+
+1. clone this repo
+2. yarn install
+3. create a .env.local file with the following
 
 ```
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=1:
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+
+```
+
+4. create a collection in firestore named chats.
+5. run the next server using yarn run dev
+6. login to an admin account using the provided username & password and go to /admin
+7. in a seperate browser instance (incognito, or different chrome profile) log into another account and go to /members
+8. chat away.
+
+### Structure of Chats
+
+````json
+[
+    {
+    "id": "autopopulated",
+    "users" : ["'array of emails'"],
+    "messages" : ["VIEW MESSAGES STRUCTURE"]
+    }
+]```
+
+### Structure of Messages, this is an array
+
+Note that: for the option that the admin chooses, it will log which admin chose it. They will be marked as the sender.
+
+```json
+{
+  "id": "id here",
+  "users": ["useremail@email.com", "admin-lore@gmail.com"],
+  "messages": [
+    {
+      "text": "message",
+      "timestamp": "time it was sent",
+      "sender": "email of sender",
+      "seenByReciever": true
+    },
+    {
+      "text": "message",
+      "timestamp": "time it was sent",
+      "sender": "email of sender",
+      "seenByReciever": true
+    },
+    {
+      "text": "message",
+      "timestamp": "time it was sent",
+      "sender": "email of sender",
+      "seenByReciever": true
+    }
+  ]
+}
+````
 
 ### Structure of Machine Learning Model Options
 
 ```json
-
 {
-    "options": [{"text": "message"},{"text": "message"},{"text": "message"}],
+  "options": [
+    { "text": "message" },
+    { "text": "message" },
+    { "text": "message" }
+  ]
 }
-
 ```
+
+## TODO/Outstanding fixes
+
+[] - adjust api calls to handle talking with the model.
+[] - mobile responsiveness on members portion
+[] - create an authProvider that sits in rootlayout so user doesn't need to be called on every page
+[] - move firebase calls into the api routes (if possible, more research needed)
+[] - seenby functionality
+[] - "who is talking" notation on the chat bubbles
+[] - admin property on user object
+[] - clean up the files
