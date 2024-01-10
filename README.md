@@ -4,6 +4,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Overview
 This is a chat application built for a take home assignment. The purpose of it is to provide services that an eventual ML model can take advantage of. 
 
+![ScreenRecording2024-01-10at12 33 23AM-ezgif com-video-to-gif-converter](https://github.com/Alira-Coffman/lore-chatapp/assets/40637263/1e190705-5e73-49e1-b948-882cedb843c8)
+
+
 
 ## Key Requirements
 
