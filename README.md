@@ -59,6 +59,7 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
 8. chat away.
 
 # Architecture 
+```
 [User] <---> [Next.js Frontend] <---> [Firebase Auth]
                                  |
                                  v
@@ -66,6 +67,8 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
                                  |
                                  v
                            [Next.js API Routes] <---> Cloud Storage/Cloud Functions  <---> [Machine Learning Model]
+
+```
 
 ## Authentication 
 The user can log in through google, or email and password. (currently email and password is intended for admins only. But restrictions would need to be added --refer to todolist) 
